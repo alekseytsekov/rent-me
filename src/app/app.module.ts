@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+//import { FormsModule } from '@angular/forms';
 
 // modules
 import { AppRoutesModule } from './core/app.routes.module';
@@ -8,6 +9,9 @@ import { AuthModule } from './components/auth/auth.module';
 
 // services
 import { RequesterService } from './core/requester.service';
+import { AuthManager } from './utils/auth.manager';
+import { AuthGuard } from './core/auth.guard.service';
+
 
 // components
 import { AppComponent } from './app.component';
@@ -18,12 +22,15 @@ import { AppComponent } from './app.component';
 	],
 	imports: [
 		BrowserModule,
+		//FormsModule,
 		AppRoutesModule,
 		AppCommonModule,
 		AuthModule
 	],
 	providers: [
-		RequesterService
+		RequesterService,
+		AuthManager,
+		AuthGuard
 	],
 	bootstrap: [AppComponent]
 })

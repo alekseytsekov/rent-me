@@ -1,3 +1,29 @@
 <div>
     hi, i am register form!
+
+    <form #registerForm="ngForm" (ngSubmit)="submit()">
+        <label for="email">Email</label>
+        <input 
+            type="text" 
+            id="email" 
+            name="email"
+            [(ngModel)]="user.email"
+            >
+        <br>
+        {{user.email}}
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" name="firstName">
+        <br>
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" name="lastName">
+        <br>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password">
+        <br>
+        <label for="confirmPass">Confirm password</label>
+        <input type="password" id="confirmPass" name="confirmPass">
+        <br>
+
+        <input type="submit" value="Register" >
+    </form>
 </div>

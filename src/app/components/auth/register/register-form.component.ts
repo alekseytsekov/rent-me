@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
+//models
+import { User } from './../../../models/auth/user.model';
 
 @Component({
     selector: 'RegisterForm',
@@ -8,8 +12,16 @@ import { Component } from '@angular/core';
     ],
 })
 export class RegisterForm{
-    constructor(){
 
+    private user : User
+
+    constructor(private router : Router){
+        this.user = new User();
     }
 
+    submit() : void {
+        console.log(JSON.stringify(this.user));
+
+        this.router.navigate(['/login']);
+    }
 }

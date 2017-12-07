@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
 import config from './../config/config';
-import authManager from './../utils/auth.manager';
+import { AuthManager } from './../utils/auth.manager';
 
 const appKey = config.appKey; // APP KEY HERE;
 const appSecret = config.appSec; // APP SECRET HERE;
@@ -15,7 +15,7 @@ const logoutUrl = config.baseUrl + `/user/${appKey}/_logout`
 
 @Injectable()
 export class RequesterService {
-    constructor(private http : HttpClient){
+    constructor(private http : HttpClient, private authManager : AuthManager){
 
     }
 
@@ -43,7 +43,7 @@ export class RequesterService {
           })
         } else {
 
-            const token = authManager.getAuth().token;
+            const token = this.authManager.getAuth().token;
 
             return new HttpHeaders({
                 'Authorization': `Kinvey ${token}`,
