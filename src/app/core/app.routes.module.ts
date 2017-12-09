@@ -9,11 +9,13 @@ import { RegisterForm } from './../components/auth/register/register-form.compon
 import { LoginFormComponent } from './../components/auth/login/login-form.component';
 import { HomeComponent } from './../components/home/home.component';
 import { NavigationComponent } from './../components/navigation/navigation.component';
+import { LogoutComponent } from './../components/auth/logout/logout.component';
 
 const routes : Routes = [
     { path : '', canActivate: [ AuthGuard ], component : HomeComponent, pathMatch : 'full' },
     { path : 'login', component : LoginFormComponent },
     { path : 'register', component : RegisterForm },
+    { path : 'logout', canActivate: [ AuthGuard ], component : LogoutComponent },
     //{ path : '**', component : PageNotFoundComponent }
 ];
 

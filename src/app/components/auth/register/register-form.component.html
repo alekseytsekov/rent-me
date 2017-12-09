@@ -1,29 +1,41 @@
-<div>
-    <span class="alert alert-danger">hi, i am register form!</span>
+<div class="row">
+    <div class="col-8 offset-2">
+        <h2 class="alert alert-info">Register Form</h2>
 
-    <form #registerForm="ngForm" (ngSubmit)="submit()">
-        <label for="email">Email</label>
-        <input 
-            type="text" 
-            id="email" 
-            name="email"
-            [(ngModel)]="user.email"
-            >
-        <br>
-        {{user.email}}
-        <label for="firstName">First Name</label>
-        <input type="text" id="firstName" name="firstName">
-        <br>
-        <label for="lastName">Last Name</label>
-        <input type="text" id="lastName" name="lastName">
-        <br>
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password">
-        <br>
-        <label for="confirmPass">Confirm password</label>
-        <input type="password" id="confirmPass" name="confirmPass">
-        <br>
-
-        <input type="submit" value="Register" >
-    </form>
+        <div class="text-center  info-error" *ngIf="hasError" (click)="hideError()">
+            <span class="alert alert-danger">{{errorMessage}} <span class="fa fa-remove"></span></span>
+        </div>
+    
+        <form class="offset-3" #registerForm="ngForm" (ngSubmit)="submit()">
+            
+            <div class="">
+                <label class="col-3" for="email">Email</label>
+                <input 
+                    class=""
+                    type="text" 
+                    id="email" 
+                    name="email"
+                    [(ngModel)]="user.email"
+                    pattern='^(([^()[\]\\.,;:\s@"]+(\.[^()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'
+                    required
+                    >
+                <br>
+            </div>
+            
+            <label  class="col-3" for="firstName">First Name</label>
+            <input type="text" id="firstName" name="firstName" [(ngModel)]="user.firstName" pattern='.*\S+.*' required>
+            <br>
+            <label  class="col-3" for="lastName">Last Name</label>
+            <input type="text" id="lastName" name="lastName" [(ngModel)]="user.lastName" pattern='.*\S+.*' required>
+            <br>
+            <label  class="col-3" for="password">Password</label>
+            <input type="password" id="password" name="password" [(ngModel)]="user.password" pattern="[a-zA-Z0-9\.-_]+" required>
+            <br>
+            <label  class="col-3" for="confirmPassword">Confirm password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" [(ngModel)]="user.confirmPassword" pattern="[a-zA-Z0-9\.-_]+" required>
+            <br>
+    
+            <input [disabled]="!registerForm.form.valid" class="offset-3 btn btn-default" type="submit" value="Register" >
+        </form>
+    </div>
 </div>

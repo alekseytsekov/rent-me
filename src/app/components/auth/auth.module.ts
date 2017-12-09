@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 //components
 import { RegisterForm } from './register/register-form.component';
 import { LoginFormComponent } from './login/login-form.component';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
     imports : [ 
@@ -14,12 +15,14 @@ import { LoginFormComponent } from './login/login-form.component';
     declarations : [
         // components
         RegisterForm,
-        LoginFormComponent
+        LoginFormComponent,
+        LogoutComponent
     ],
     exports : [
         // components
         RegisterForm,
-        LoginFormComponent
+        LoginFormComponent,
+        LogoutComponent
     ],
     providers : [
         

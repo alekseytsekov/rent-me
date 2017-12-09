@@ -4,16 +4,17 @@ import { Role } from './role.model';
 import { Property } from './../property/property.model';
 
 @Injectable()
-export class User{
+export class UserDto{
     public id : string;
-    public username : string;
-    public password : string;
+    public email : string;
     public firstName : string;
     public lastName : string;
-    public roleIds : string[];
-    //public roles : Role[];
+    public password : string;
+    public confirmPassword : string;
+    //public roleId : string;
+    public role : Role;
     public canComment : boolean;
     public isBanned : boolean;
-    public favoritePropertyIds : string[];
+    //public favoritePropertyIds : string[];
     //public favoriteProperties : Property[]; 
 }

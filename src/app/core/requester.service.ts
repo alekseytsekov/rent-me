@@ -8,8 +8,12 @@ import { AuthManager } from './../utils/auth.manager';
 const appKey = config.appKey; // APP KEY HERE;
 const appSecret = config.appSec; // APP SECRET HERE;
 
+// console.log('request service');
+// console.log(appKey);
+// console.log(appSecret);
+
 const baseUrl = config.baseUrl;
-const registerUrl = config.baseUrl + `/user/${appKey}`;
+//const registerUrl = config.baseUrl + `/user/${appKey}`;
 const loginUrl = config.baseUrl + `/user/${appKey}/login`;
 const logoutUrl = config.baseUrl + `/user/${appKey}/_logout`
 
@@ -27,10 +31,16 @@ export class RequesterService {
         return this.http.get(fullUrl, { headers });
     }
 
-    postReq(url : string, data : {}) {
+    postReq(url : string, data : {}, isBasicAuth = false) {
         const fullUrl = config.baseUrl + url;
         const body = JSON.stringify(data);
-        const headers = this.createAuthHeaders('Kin');
+
+        let authType = 'Kinvey';
+
+        if(isBasicAuth){
+            authType = 'Basic';
+        }
+        const headers = this.createAuthHeaders(authType);
 
         return this.http.post(fullUrl, body, { headers });
     }
