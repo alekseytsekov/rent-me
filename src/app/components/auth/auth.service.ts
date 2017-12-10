@@ -8,6 +8,7 @@ import { RequesterService } from './../../core/requester.service';
 import { User } from './../../models/auth/user.model';
 
 const registerUrl = `/user/${config.appKey}`;
+const loginUrl = `/user/${config.appKey}/login`;
 const logoutUrl = `/user/${config.appKey}/_logout`
 
 @Injectable()
@@ -25,6 +26,16 @@ export class AuthService{
             }, err => {
                 callBack(null, err);
             });
+    }
+
+    login(loginUser, callBack) {
+        this.requestor.postReq(loginUrl, loginUser, true)
+            .subscribe(res => {
+                callBack(res);
+            },
+            err => {
+                callBack(null, err);
+            })
     }
 
     logout(callBack){
