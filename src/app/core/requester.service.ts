@@ -23,10 +23,10 @@ export class RequesterService {
 
     }
 
-    getReq(url : string){
+    getReq(url : string, useUserCredentials : boolean = false){
 
         const fullUrl = config.baseUrl + url;
-        const headers = this.createAuthHeaders('Basic');
+        const headers = this.createAuthHeaders('Basic', useUserCredentials);
 
         return this.http.get(fullUrl, { headers });
     }
@@ -45,11 +45,21 @@ export class RequesterService {
         return this.http.post(fullUrl, body, { headers });
     }
 
-    private createAuthHeaders(type : string) : HttpHeaders {
+    private createAuthHeaders(type : string, useUserCredentials : boolean = false) : HttpHeaders {
         if (type === 'Basic') {
+
+            if(useUserCredentials){
+                let userAuth = this.authManager.getAuth();
+
+                return new HttpHeaders({
+                    'Authorization': `Kinvey ${userAuth.token}`,
+                    //'Content-Type': 'application/json'
+                  })
+            }
+
           return new HttpHeaders({
             'Authorization': `Basic ${btoa(`${appKey}:${appSecret}`)}`,
-            'Content-Type': 'application/json'
+            //'Content-Type': 'application/json'
           })
         } else {
 

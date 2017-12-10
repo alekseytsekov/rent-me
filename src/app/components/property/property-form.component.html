@@ -1,0 +1,185 @@
+<div class="row">
+    <div class="col-10 offset-1">
+        <h2 class="alert alert-info">Add property for rent</h2>
+
+        <div class="text-center  info-error" *ngIf="hasError" (click)="hideError()">
+            <span class="alert alert-danger">{{errorMessage}} <span class="fa fa-remove"></span></span>
+        </div>
+    
+        <form class="" #addPropertyForm="ngForm" (ngSubmit)="submit()">
+            
+            <div class="row">
+
+                <!-- left section -->
+                <div class="col-12 col-md-4">
+
+                    <!-- <div class="">
+                        <label class="col-4" for="email">Email</label>
+                        <input 
+                            class=""
+                            type="text" 
+                            id="name" 
+                            name="name"
+                            [(ngModel)]="propertyDto.name"
+                            pattern='.*\S+.*'
+                            placeholder="email"
+                            required
+                            >
+                        <br>
+                    </div> -->
+
+                    <div class="">
+                        <label class="col-4" for="type">Property type</label>
+                        
+                        <select 
+                        id="propertyTypeId" 
+                        name="propertyTypeId"
+                        class=""
+                        [(ngModel)]="propertyDto.propertyTypeId"
+                        required
+                        >
+                            <option *ngFor="let propType of propertyTypes" value={{propType._id}}>{{propType.type}}</option>
+                        </select>
+                    </div>
+                
+                    <div class="">
+                        <label class="col-4" for="name">Description</label>
+                        <input 
+                            class=""
+                            type="text" 
+                            id="description" 
+                            name="description"
+                            [(ngModel)]="propertyDto.description"
+                            pattern='.*\S+.*'
+                            placeholder="description"
+                            required
+                            >
+                        <br>
+                    </div>
+                
+                    <div class="">
+                        <label class="col-4" for="name">Price</label>
+                        <input 
+                            class=""
+                            type="number" 
+                            id="price" 
+                            name="price"
+                            [(ngModel)]="propertyDto.price"
+                            min="0"
+                            placeholder="price"
+                            required
+                            >
+                        <br>
+                    </div>
+                
+                    <div class="">
+                        <label class="col-4" for="phone">Phone Number</label>
+                        <input 
+                            class=""
+                            type="text" 
+                            id="phone" 
+                            name="phone"
+                            [(ngModel)]="propertyDto.phone"
+                            placeholder="phone number"
+                            required
+                            >
+                    </div>
+                
+                </div>
+
+                <!-- center section -->
+                <div class="col-12 col-md-4">
+                    
+                    <div class="row c-row">
+                        <label class="col-3" for="phone">Country</label>
+                        <input 
+                            class=""
+                            type="text" 
+                            id="country" 
+                            name="country"
+                            [(ngModel)]="propertyDto.country"
+                            placeholder="country"
+                            required
+                            >
+                    </div>
+                    
+                    <div class="row c-row">
+                        <label class="col-3" for="phone">City</label>
+                        <input 
+                            class=""
+                            type="text" 
+                            id="city" 
+                            name="city"
+                            [(ngModel)]="propertyDto.city"
+                            placeholder="city"
+                            required
+                            >
+                    </div>
+
+                    <div class="row c-row">
+                        <label class="col-3" for="phone">Address</label>
+                        <input 
+                            class=""
+                            type="text" 
+                            id="address" 
+                            name="address"
+                            [(ngModel)]="propertyDto.address"
+                            placeholder="address"
+                            required
+                            >
+                    </div>
+
+                    <!-- images -->
+                    <div *ngFor="let img of images; " class="row c-row">
+                        <label class="col-3" for={{img.id}}>Image url</label>
+                        <input 
+                            (keyup)="setImageUrl($event)"
+                            class=""
+                            type="text" 
+                            id={{img.id}}
+                            name={{img.id}}
+                            placeholder="image url..."
+                            >
+                        &emsp;
+                        <button (click)="addImage()" class="btn btn-sm btn-success" type="button"><span class="fa fa-plus"></span></button>
+                    </div>
+
+
+                </div>
+
+                <!-- right section -->
+                <div class="col-12 col-md-4">
+                        <div class="row">
+                                <label class="col-4" for="selectRoom">Add room</label>
+                
+                                <select [(ngModel)]="propertyDto.selectRoom" name="selectRoom" id="selectRoom" class="" required>
+                                    <option *ngFor="let roomType of roomTypes" value={{roomType._id}}>{{roomType.name}}</option>
+                                </select>
+                                &emsp;
+                                <button class="btn btn-sm btn-success" type="button" (click)="addRoom()"><span class="fa fa-plus"></span></button>
+                
+                            </div>
+                
+                            <div class="row">
+                                    <label class="col" for="name">Available rooms</label>
+                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-12 margin-custom" *ngFor="let room of chosenRooms">
+                                    <div class="row">
+                                            <span class="offset-1 col-8">{{room.name}}</span>
+                                            <button 
+                                            [attr.roomid]="room._id" 
+                                            class="btn btn-xs btn-danger col-3" 
+                                            type="button" (click)="removeRoom($event)">Remove</button>
+                                    </div>
+                                </div>
+                            </div>
+                </div>
+
+            </div>
+            <br>
+            <input [disabled]="!addPropertyForm.form.valid" class="offset-5 btn btn-primary" type="submit" value="Add" >
+        </form>
+    </div>
+</div>
