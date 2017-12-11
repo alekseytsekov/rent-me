@@ -11,17 +11,22 @@ import { HomeComponent } from './../components/home/home.component';
 import { NavigationComponent } from './../components/navigation/navigation.component';
 import { LogoutComponent } from './../components/auth/logout/logout.component';
 import { PropertyFrom } from './../components/property/property-form.component';
-import { Property } from './../components/property/property.component';
+import { PropertyComponent } from './../components/property/property.component';
+import { PropertyOwnComponent } from './../components/property/property-own.component';
+import { PropertyDetailComponent } from './../components/property/property-detail.component';
 
 const routes : Routes = [
-    { path : '', canActivate: [ AuthGuard ], component : HomeComponent, pathMatch : 'full' },
+    { path : '', canActivate: [ AuthGuard ], component : PropertyComponent, pathMatch : 'full' },
     { path : 'login', component : LoginFormComponent },
     { path : 'register', component : RegisterForm },
     { path : 'logout', canActivate: [ AuthGuard ], component : LogoutComponent },
     { path : 'property/add', canActivate: [ AuthGuard ], pathMatch : 'full', component : PropertyFrom },
-    { path : 'property/edit/:propertyId', canActivate: [ AuthGuard ], pathMatch : 'full', component : PropertyFrom },
-    { path : 'property/list', canActivate: [ AuthGuard ], pathMatch : 'full', component :  },
-    { path : 'property/details', canActivate: [ AuthGuard ], pathMatch : 'full', component : Property },
+    //{ path : 'property/add/:propertyId', canActivate: [ AuthGuard ], pathMatch : 'full', component : PropertyFrom },
+    { path : 'property/own', canActivate: [ AuthGuard ], pathMatch : 'full', component : PropertyOwnComponent },
+    { path : 'property/:propertyId', canActivate: [ AuthGuard ], pathMatch : 'full', component : PropertyDetailComponent },
+
+    //{ path : 'admin/users', canActivate: [ AuthGuard ], pathMatch : 'full', component : Property },
+    //{ path : 'admin/properties', canActivate: [ AuthGuard ], pathMatch : 'full', component : Property },
     //{ path : '**', component : PageNotFoundComponent }
 ];
 

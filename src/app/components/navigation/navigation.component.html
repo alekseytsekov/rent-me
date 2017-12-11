@@ -1,7 +1,7 @@
 <nav>
     <a *ngIf="isAuthenticated" routerLink="/">Property ads</a>
     <a *ngIf="isAuthenticated" routerLink="/property/add">Add property ad</a>
-    <a *ngIf="isAuthenticated" routerLink="/property/my">My property ads</a>
+    <a *ngIf="isAuthenticated" routerLink="/property/own">My property ads</a>
     <a *ngIf="isAuthenticated" routerLink="/logout">Log out</a>
     <a *ngIf="!isAuthenticated" routerLink="/register">Register</a>
     <a *ngIf="!isAuthenticated" routerLink="/login">Login</a>
