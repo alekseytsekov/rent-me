@@ -24,6 +24,6 @@ export class PropertyOwnComponent implements OnInit {
 
     async getProperties (){
         this.properties = await this.propertyService.getAllPropertiesByUser();
-        console.log(this.properties);
+        //console.log(this.properties);
     }
 }

@@ -22,7 +22,7 @@ export class PropertyService{
 
     }
 
-    async getPropertyTypes()  { // : PropertyType[]
+    async getPropertyTypes ()  { // : PropertyType[]
         
         try{
             let res = await this.requestService.getReq(propertyTypeUrl, true)
@@ -66,8 +66,8 @@ export class PropertyService{
             if(result['status'] && result['status'] === 401){
                 return [];
             }
-            console.log(1);
-            console.log(result);
+            //console.log(1);
+            //console.log(result);
             return result;
         } catch (e) {
             console.log(e);
@@ -83,8 +83,8 @@ export class PropertyService{
             if(result['status'] && result['status'] === 401){
                 return [];
             }
-            console.log(1);
-            console.log(result);
+            //console.log(1);
+           // console.log(result);
             return result;
 
         } catch(e) {

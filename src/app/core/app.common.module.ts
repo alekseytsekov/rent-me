@@ -1,21 +1,22 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-// import { HomeComponent } from './../components/home/home.component';
-// import { NavigationComponent } from './../components/navigation/navigation.component';
+import { CommonService } from './common.service';
 
 @NgModule({
-    imports : [ CommonModule ],
+    imports : [ 
+        CommonModule,
+        //CommonService
+     ],
     declarations : [
         //components
-        //HomeComponent,
-        //NavigationComponent
+        //CommonService
     ],
     exports : [
-        //components
-        //HomeComponent,
-        //NavigationComponent
+        //CommonService
     ],
-    providers : []
+    providers : [
+        CommonService
+    ]
 })
 export class AppCommonModule {}

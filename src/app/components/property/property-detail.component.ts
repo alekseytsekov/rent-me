@@ -23,6 +23,6 @@ export class PropertyDetailComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.propertyId = this.route.snapshot.params['idddd'];
+        this.propertyId = this.route.snapshot.params['propertyId'];
     }
 }

@@ -34,7 +34,8 @@ import { AppComponent } from './app.component';
 	providers: [
 		RequesterService,
 		AuthManager,
-		AuthGuard
+		AuthGuard,
+		AppCommonModule
 	],
 	bootstrap: [AppComponent]
 })

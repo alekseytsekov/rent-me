@@ -3,7 +3,7 @@ import { Property } from './../property/property.model';
 
 export class Comment {
     public id : string;
-    public authorId : string;
+    public userId : string;
     public author : User;
     public propertyId : string;
     public property : Property;
