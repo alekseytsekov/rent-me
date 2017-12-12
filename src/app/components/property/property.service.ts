@@ -12,6 +12,7 @@ const propertyTypeUrl = `${baseCollectionUrl}/propertyType`;
 const roomTypeUrl = `${baseCollectionUrl}/rooms`;
 const addPropertyUrl = `${baseCollectionUrl}/property`;
 const propertiesUrl = addPropertyUrl;
+const propertyUrl = addPropertyUrl;
 
 @Injectable()
 export class PropertyService{
@@ -93,7 +94,21 @@ export class PropertyService{
         }
     }
 
+    getPropertyById(propertyId, callback){
+
+        let url = addPropertyUrl + '/' + propertyId;
+
+        this.requestService.getReq(url, true)
+            .subscribe(res => {
+                callback(res);
+            },
+            err => {
+                callback(null, err);
+            });
+    }
+
     addProperty(property, callback) {
+
         this.requestService.postReq(addPropertyUrl, property)
             .subscribe(res => {
                 console.log(res);

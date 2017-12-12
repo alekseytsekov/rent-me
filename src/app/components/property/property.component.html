@@ -1,7 +1,47 @@
-<div>
-    <div *ngFor="let prop of properties">
-        <div>
+<div class="row ad-wrapper">
+    <div *ngFor="let prop of properties" class="col-sm-4">
+
+        <div class="ad-short">
+                <div class="row text-center">
+                        <div class="col-sm-12 text-center">
+                                <h4>{{prop.description}}</h4>
+                        </div>
+                </div>
+                <div class="row image-wrapper">
+                    <!-- <img src={{prop}} alt={{}}> -->
+                    <div *ngFor="let imgUrl of prop.images" class="col-sm-5">
+                        <img src={{imgUrl}} alt="img-prop">
+                    </div>
+                </div>
+        
+                <div class="row">
+                    <label class="col-sm-2">Type</label>
+                    <span>{{prop.propertyType.type}}</span>
+                </div>
+        
+                <div class="row">
+                    <label class="col-sm-2">Price</label>
+                    <span>{{prop.price}}</span>
+                </div>
+        
+                <div class="row">
+                    <label class="col-sm-12">Rooms</label>
+                    <div *ngFor="let room of prop.rooms" class="col-sm-6">
+                        <span class="room-name">{{room.name}}</span>
+                    </div>
+                </div>
+        
+                <br>
+                <div class="row">
+                    <button (click)="goToDetails(prop.detailsLink)" class="btn btn-info col-sm-2">Details</button>
+                </div>
+            </div>
+
+            <br>
+
+        <!-- <div>
             {{prop | json}}
-        </div>
+        </div> -->
     </div>
+    <br>
 </div>

@@ -26,6 +26,10 @@ export class Property{
         public country : string,
         public city : string,
         public address : string,
+        public imageIds : string[],
+        public images : string[],
+        public isRentedOut : boolean,
+        public phone : string
     ){
         //this._id = '';
     }

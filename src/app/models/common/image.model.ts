@@ -1,4 +1,4 @@
 export class Image {
-    public id : string;
+    public _id : string;
     public imageUrl : string;
 }

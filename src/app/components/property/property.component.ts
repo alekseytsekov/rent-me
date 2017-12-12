@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { PropertyService } from './property.service';
 import { CommonService } from './../../core/common.service';
@@ -8,7 +9,9 @@ import { Room } from './../../models/property/room.model';
 import { PropertyDto } from './../../models/property/propertyDto.model';
 import { User } from '../../models/auth/user.model';
 import { Comment } from '../../models/common/comment.model';
-import { forEach } from '@angular/router/src/utils/collection';
+import { Image } from './../../models/common/image.model';
+
+//import { forEach } from '@angular/router/src/utils/collection';
 
 //import validator from './../../utils/validator';
 
@@ -27,13 +30,66 @@ export class PropertyComponent implements OnInit{
     
     constructor(
         private propertyService : PropertyService,
-        private commonService : CommonService
+        private commonService : CommonService,
+        private router : Router
     ){
         this.properties = [];
     }
 
     ngOnInit(){
         this.getProperties();
+    }
+
+    async getImages(imageMap){
+        let imagesArr : string[] = [];
+        imageMap.forEach((value: any, key: string) => {
+            
+
+            if(key === undefined || key === null || key === 'undefined' || key.length < 1 || key === ''){
+                return;
+            }
+
+            imagesArr.push(key);
+            
+        });
+
+        let images = await this.commonService.getImages(imagesArr) as Image[];
+
+        return images;
+    }
+
+    async getAndSetUsersToMap(userMap) {
+        let tempUserArr = [];
+        userMap.forEach((value: any, key: string) => {
+            
+
+            if(key === undefined || key === null || key === 'undefined' || key.length < 1 || key === ''){
+                return;
+            }
+
+            tempUserArr.push(key);
+            
+        });
+
+        // get users, one by one
+        for(let i = 0; i < tempUserArr.length; i++){
+
+            //console.log('key:' + tempUserArr[i]);
+
+            let response = await this.commonService.getUserById(tempUserArr[i]);
+            
+            if(response === []){
+                console.log('res is empty arr.')
+                return;
+            }
+
+            if(response['status'] && response['status'] == '404'){
+                console.log('** user not found **');
+                continue;
+            }
+
+            userMap.set(tempUserArr[i], response);
+        }
     }
 
     async getProperties(){
@@ -60,10 +116,16 @@ export class PropertyComponent implements OnInit{
         const userMap = new Map();
         const commentMap = new Map();
         const commentIds : string[] = [];
+        const imageMap = new Map();
         
         this.properties = await this.propertyService.getAllProperties() as PropertyDto[];
+
+        this.properties = this.properties.filter(x => !x.isRentedOut);
         
         this.properties.forEach(x => {
+
+            x.detailsLink = '/property/' + x._id;
+
             x.rooms = [];
             x.roomIds.forEach(r => {
                 x.rooms.push(roomMap.get(r));
@@ -87,12 +149,6 @@ export class PropertyComponent implements OnInit{
                 }
             });
 
-            x.renterIds.forEach(x => {
-                if(!userMap.has(x)){
-                    userMap.set(x, null);
-                }
-            });
-
             x.commentIds.forEach(x => {
                 if(!commentMap.has(x)){
                     commentMap.set(x, null);
@@ -100,59 +156,36 @@ export class PropertyComponent implements OnInit{
                 }
             });
 
+            x.roomIds.forEach(x => {
+                if(!roomMap.has(x)){
+                    roomMap.set(x, null);
+                }
+            })
+
         })
 
-        // for(let commentKey of commentMap){
-        //     let key = commentKey[0];
-        // }
-        
         // commentMap.forEach((value: any, key: string) => {
         //     console.log(key, value);
         // });
 
-        let comments = await this.commonService.getCommentsById(commentIds) as Comment[];
+        //let images = await this.getImages(imageMap);
 
-        //console.log('comments 111');
-        //console.log(comments);
+        // let comments = await this.commonService.getCommentsById(commentIds) as Comment[];
 
-        comments.forEach(x => {
-            if(x.userId !== undefined && x.userId !== null && !userMap.has(x.userId)){
-                userMap.set(x.userId, null);
-            }
-        });
+        // comments.forEach(x => {
+        //     if(x.userId !== undefined && x.userId !== null && !userMap.has(x.userId)){
+        //         userMap.set(x.userId, null);
+        //     }
+        // });
 
-        let tempUserArr = [];
-        userMap.forEach((value: any, key: string) => {
-            
+        this.getAndSetUsersToMap(userMap);
 
-            if(key === undefined || key === null || key === 'undefined' || key.length < 1 || key === ''){
-                return;
-            }
+        // this.properties.forEach(x => {
+        //     x.
+        // })
+    }
 
-            tempUserArr.push(key);
-            
-        });
-
-        for(let i = 0; i < tempUserArr.length; i++){
-
-            console.log('key:' + tempUserArr[i]);
-
-            let response = await this.commonService.getUserById(tempUserArr[i]);
-            
-            if(response === []){
-                console.log('res is empty arr.')
-                return;
-            }
-
-            if(response['status'] && response['status'] == '404'){
-                console.log('** user not found **');
-                continue;
-            }
-
-            userMap.set(tempUserArr[i], response);
-        }
-
-        console.log(userMap);
-        //console.log(this.properties);
+    goToDetails(link){
+        this.router.navigate([link]);
     }
 }

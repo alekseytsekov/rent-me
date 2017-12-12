@@ -1,0 +1,79 @@
+
+<hr>
+
+<div class="row">
+    <div class="col-sm-4 offset-2">
+        <div class="row">
+            <div *ngFor="let img of property.images" class="col-sm-6 image-wrapper">
+                <div class="images-wrapper">
+                    <img src={{img}} alt="img-prop">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div class="row">
+            <p class="col-sm-3"><span>{{property?.description}}</span></p>
+            
+        </div>
+
+        <div class="row">
+            <p class="col-sm-3"><button type="button" class="col-sm-12 btn btn-primary">Rent me!</button></p>
+            <span class="col-sm-6 offset-2">Phone: {{property?.phone}}</span>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <label class="col-sm-2">Price</label>
+            <span class="col-sm-3">{{property?.price}}</span>
+            <span class="col-sm-6">Country: {{property?.country}}</span>
+        </div>
+
+
+        <div class="row">
+            <label class="col-sm-2">Type</label>
+            <span class="col-sm-3">{{property.propertyType?.type}}</span>
+            <span class="col-sm-6">City: {{property?.city}}</span>
+        </div>
+
+        <div class="row">
+            <p class="col-sm-2"><label>Rooms</label></p>
+            <div class="col-sm-3">
+                    <div *ngFor="let room of property.rooms" class="row room-name"><span class="col-sm-12">{{room.name}}</span></div>
+            </div>
+            <span class="col-sm-6">Address: {{property?.address}}</span>
+        </div>
+    
+        <br>
+
+        <div class="row">
+            <span class="col-sm-12">Likes</span>
+        </div>
+
+        <br>
+
+        <div class="row">
+            
+            <div class="col-sm-1">
+                    <button type="button" class="btn btn-success">{{property.likeCount}}</button>
+    
+                </div>
+    
+                <div class="col-sm-1">
+    
+                    <button type="button" class="btn btn-danger">{{property.dislikeCount}}</button>
+                </div>
+        </div>
+
+        <br>
+
+        <div class="row comment-wrapper">
+            <div class="row" *ngFor="let comment of property.comments">
+                comment...
+            </div>
+        </div>
+
+    </div>
+</div>

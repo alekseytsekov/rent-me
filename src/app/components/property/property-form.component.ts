@@ -9,6 +9,7 @@ import { PropertyDto } from './../../models/property/propertyDto.model';
 import { PropertyType } from './../../models/property/property-type.model';
 
 import validator from './../../utils/validator';
+import { CommonService } from '../../core/common.service';
 
 class ImageDto {
     
@@ -28,7 +29,8 @@ class ImageDto {
         //AuthService,
         AuthManager,
         PropertyDto,
-        PropertyService
+        PropertyService,
+        CommonService
      ]
 })
 export class PropertyFrom implements OnInit{
@@ -50,7 +52,8 @@ export class PropertyFrom implements OnInit{
         private router : Router, 
         private authManager : AuthManager, 
         private propertyDto : PropertyDto,
-        private propertyService : PropertyService
+        private propertyService : PropertyService,
+        private commonService : CommonService
     ){
 
         this.hasError = false;
@@ -143,10 +146,10 @@ export class PropertyFrom implements OnInit{
     }
 
     submit() : void {
-        console.log('submit');
-        console.log(this.propertyDto);
-        console.log(this.images);
-        console.log(this.chosenRooms);
+        //console.log('submit');
+        //console.log(this.propertyDto);
+        //console.log(this.images);
+        //console.log(this.chosenRooms);
 
         if(!this.validateForm(this.propertyDto, this.images, this.chosenRooms)){
             return;
@@ -158,6 +161,8 @@ export class PropertyFrom implements OnInit{
             roomIds.push(room._id);
         }
 
+        let imagess = this.getImageUrls(this.imageMap);
+        
         let newProperty = new Property(
             this.authManager.getAuth().id,
             [],
@@ -171,17 +176,44 @@ export class PropertyFrom implements OnInit{
             this.propertyDto.propertyTypeId,
             this.propertyDto.country,
             this.propertyDto.city,
-            this.propertyDto.address
+            this.propertyDto.address,
+            [],
+            imagess,
+            false,
+            this.propertyDto.phone
         );
 
         this.propertyService.addProperty(newProperty, this.processAddProperty);
         
     }
 
+    // async uploadImages(imageMap) {
+
+    //     let imageIds = [];
+
+    //     this.images.forEach((value: any, key: string) => {
+    //         imageIds.push(key);
+    //         let res = await this.commonService.addImage(value);
+    //     });
+    // }
+
+    getImageUrls(imageMap){
+        let images = [];
+
+        this.images.forEach((value: any, key: string) => {
+            //console.log(value.url);
+            if(value.url.length > 0){
+                images.push(value.url);
+            }
+        });
+
+        return images;
+    }
+
     processAddProperty(res, err){
         if(err){
             console.log(err);
-            this.router.navigate(['/badrequest']);
+            //this.router.navigate(['/badrequest']);
             return;
         }
 
