@@ -80,9 +80,12 @@ export class LoginFormComponent implements OnInit {
         if(err){
             console.log(err);
             //this.router.navigate([`/error?msg=${err}`]);
+            observer.executeFunc(action.SHOW_ERROR, 'Email or password is incorrect!');
+
+            return;
         }
 
-        console.log(res);
+        //console.log(res);
 
         let fullName = res.firstName + ' ' + res.lastName;
         

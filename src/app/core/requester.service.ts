@@ -41,6 +41,17 @@ export class RequesterService {
         return this.http.post(fullUrl, body, { headers });
     }
 
+    put(url : string, data : {}) {
+        const fullUrl = config.baseUrl + url;
+        const body = JSON.stringify(data);
+
+        let authType = 'Kinvey';
+
+        const headers = this.createAuthHeaders(authType);
+        
+        return this.http.put(fullUrl, body, { headers });
+    } 
+
     private createAuthHeaders(type : string, useUserCredentials : boolean = false) : HttpHeaders {
         if (type === 'Basic') {
 
@@ -49,13 +60,13 @@ export class RequesterService {
 
                 return new HttpHeaders({
                     'Authorization': `Kinvey ${userAuth.token}`,
-                    //'Content-Type': 'application/json'
+                    'Content-Type': 'application/json'
                   })
             }
 
           return new HttpHeaders({
             'Authorization': `Basic ${btoa(`${appKey}:${appSecret}`)}`,
-            //'Content-Type': 'application/json'
+            'Content-Type': 'application/json'
           })
         } else {
 

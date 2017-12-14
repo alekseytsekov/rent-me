@@ -19,7 +19,8 @@
         </div>
 
         <div class="row">
-            <p class="col-sm-3"><button type="button" class="col-sm-12 btn btn-primary">Rent me!</button></p>
+            <p *ngIf="!property?.isRentedOut" class="col-sm-3"><button  type="button" class="col-sm-12 btn btn-primary" (click)="rentMe()">Rent me!</button></p>
+            <p *ngIf="property?.isRentedOut" class="col-sm-3"><button type="button" class="col-sm-12 btn btn-primary" disabled>Rented out!</button></p>
             <span class="col-sm-6 offset-2">Phone: {{property?.phone}}</span>
         </div>
 
@@ -56,15 +57,15 @@
 
         <div class="row">
             
-            <div class="col-sm-1">
-                    <button type="button" class="btn btn-success">{{property.likeCount}}</button>
+            <div class="col-sm-2">
+                <button type="button" (click)="like()" class="btn btn-success">{{property.likeCount}}</button>
     
-                </div>
-    
-                <div class="col-sm-1">
-    
-                    <button type="button" class="btn btn-danger">{{property.dislikeCount}}</button>
-                </div>
+            </div>
+
+            <div class="col-sm-2">
+
+                <button type="button" (click)="dislike()" class="btn btn-danger">{{property.dislikeCount}}</button>
+            </div>
         </div>
 
         <br>

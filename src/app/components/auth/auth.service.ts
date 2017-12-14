@@ -19,6 +19,8 @@ export class AuthService{
 
     register(user : User, callBack) {
 
+        //console.log(user);
+
         this.requestor.postReq(registerUrl, user, true)
             .subscribe(res => {
 

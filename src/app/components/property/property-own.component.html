@@ -1,0 +1,49 @@
+<div class="row" >
+        <h3 class="offset-1"  style="text-align:center; font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif ">Own Properties</h3>
+</div>
+
+<div class="row ad-wrapper">
+   
+    <div *ngFor="let prop of properties" class="col-sm-4">
+
+        <div class="ad-short">
+                <div class="row text-center">
+                        <div class="col-sm-12 text-center">
+                                <h4>{{prop.description}}</h4>
+                        </div>
+                </div>
+                <div class="row image-wrapper">
+                    <!-- <img src={{prop}} alt={{}}> -->
+                    <div *ngFor="let imgUrl of prop.images" class="col-sm-5">
+                        <img src={{imgUrl}} alt="img-prop">
+                    </div>
+                </div>
+        
+                <div class="row">
+                    <label class="col-sm-2">Type</label>
+                    <span>{{prop.propertyType.type}}</span>
+                </div>
+        
+                <div class="row">
+                    <label class="col-sm-2">Price</label>
+                    <span>{{prop.price}}</span>
+                </div>
+        
+                <div class="row">
+                    <label class="col-sm-12">Rooms</label>
+                    <div *ngFor="let room of prop.rooms" class="col-sm-6">
+                        <span class="room-name">{{room.name}}</span>
+                    </div>
+                </div>
+        
+                <br>
+                <div class="row">
+                    <button (click)="goToDetails(prop.detailsLink)" class="btn btn-info col-sm-3">Details</button>
+                    <button *ngIf="!prop.isRentedOut" (click)="rentMe(prop._id)" class="btn btn-danger col-sm-4 offset-1">Deactivate</button>
+                    <button *ngIf="prop.isRentedOut" (click)="rentMe(prop._id)" class="btn btn-success col-sm-4 offset-1">Activate</button>
+                </div>
+            </div>
+            <br>
+    </div>
+    <br>
+</div>

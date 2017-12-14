@@ -1,0 +1,11 @@
+<div *ngIf="isSuccess" class="row info-message" (click)="hideMessage()">
+    <span class="alert alert-success">{{message}}</span>
+</div>
+
+<div *ngIf="isInfo" class="row info-message" (click)="hideMessage()">
+    <span class="alert alert-info">{{message}}</span>
+</div>
+
+<div *ngIf="isError" class="row info-message" (click)="hideMessage()">
+    <span class="alert alert-danger">{{message}}</span>
+</div>

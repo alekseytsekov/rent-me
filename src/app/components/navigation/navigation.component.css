@@ -1,8 +1,17 @@
 
-nav a {
+nav a, nav span  {
     display: inline-block;
     border : 1px solid gray;
     margin : 10px;
     padding: 8px;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    text-decoration: none;
+
+    color: white;
+    background-color: rgb(99, 99, 99);
+}
+
+nav a:hover, nav span:hover {
+    color: rgb(99, 99, 99);
+    background-color: white;
 }

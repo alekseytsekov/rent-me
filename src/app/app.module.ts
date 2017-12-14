@@ -14,13 +14,15 @@ import { RequesterService } from './core/requester.service';
 import { AuthManager } from './utils/auth.manager';
 import { AuthGuard } from './core/auth.guard.service';
 
+import { InfoMessageComponent } from './components/common/info-message.component';
 
 // components
 import { AppComponent } from './app.component';
 
 @NgModule({
 	declarations: [
-		AppComponent
+		AppComponent,
+		InfoMessageComponent
 	],
 	imports: [
 		NgbModule.forRoot(),

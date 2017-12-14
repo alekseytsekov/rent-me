@@ -13,6 +13,7 @@ const roomTypeUrl = `${baseCollectionUrl}/rooms`;
 const addPropertyUrl = `${baseCollectionUrl}/property`;
 const propertiesUrl = addPropertyUrl;
 const propertyUrl = addPropertyUrl;
+const updatePropertyUrl = addPropertyUrl;
 
 @Injectable()
 export class PropertyService{
@@ -67,8 +68,7 @@ export class PropertyService{
             if(result['status'] && result['status'] === 401){
                 return [];
             }
-            //console.log(1);
-            //console.log(result);
+            
             return result;
         } catch (e) {
             console.log(e);
@@ -100,7 +100,9 @@ export class PropertyService{
 
         this.requestService.getReq(url, true)
             .subscribe(res => {
+                
                 callback(res);
+
             },
             err => {
                 callback(null, err);
@@ -112,6 +114,19 @@ export class PropertyService{
         this.requestService.postReq(addPropertyUrl, property)
             .subscribe(res => {
                 console.log(res);
+                callback(res);
+            },
+            err => {
+                callback(null, err);
+            });
+    }
+
+    updateProperty(property, callback) {
+
+        let url = updatePropertyUrl + '/' + property._id;
+
+        this.requestService.put(url, property)
+            .subscribe(res => {
                 callback(res);
             },
             err => {

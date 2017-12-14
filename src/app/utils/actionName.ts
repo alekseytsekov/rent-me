@@ -1,5 +1,11 @@
 const action = {
-    changeNavState : 'navIsAuth'
+    changeNavState : 'navIsAuth',
+    SHOW_SUCCESS : 'SHOW_SUCCESS',
+    SHOW_INFO : 'SHOW_INFO',
+    SHOW_ERROR : 'SHOW_ERROR',
+    UPDATE_RENT_PROPERTY : 'UPDATE_RENT_PROPERTY',
+    UPDATEE_PROPERTY : 'UPDATE_PROPERTY',
+    UPDATE_PROPERTY_VOTES : 'UPDATE_PROPERTY_VOTES',
 }
 
 export default action;

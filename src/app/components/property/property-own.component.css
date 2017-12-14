@@ -1,0 +1,26 @@
+
+label {
+    font-weight: bold;
+}
+
+.ad-wrapper {
+    padding: 3rem;
+}
+
+.ad-short {
+    padding: 2rem;;
+    border: 2px solid rgb(230,230,230);
+}
+
+.ad-short:hover {
+    background-color: rgb(235,235,235);
+    border: 2px solid black;
+}
+
+.image-wrapper img {
+    max-width: 10rem;
+}
+
+/* .room-name {
+    border: 2px solid rgb(230,230,230);
+} */

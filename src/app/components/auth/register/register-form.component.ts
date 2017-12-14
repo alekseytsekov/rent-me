@@ -98,7 +98,9 @@ export class RegisterForm implements OnInit{
         newUser.favoritePropertyIds = [];
         newUser.isBanned = false;
         //newUser.roles = [];
-        newUser.roleIds = [];
+        newUser.roleIds = []; // 5a2d04081c5343484603ed13
+
+        //console.log(newUser);
 
         this.authService.register(newUser, this.processRegisterResponse);
     }
@@ -111,9 +113,11 @@ export class RegisterForm implements OnInit{
             return;
         }
 
+        //console.log(res);
+
         let fullName = res.firstName + ' ' + res.lastName;
 
-        this.authManager.setAuth(res._kmd.authtoken, res._id, fullName, res.canComment, res.isBanned);
+        this.authManager.setAuth(res._kmd.authtoken, res._id, fullName, true, false);
 
         //this.router.navigate(['/login']);
         observer.executeFunc(action.changeNavState, this.authManager.isAuthenticated());
