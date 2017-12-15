@@ -13,13 +13,13 @@ import action from './../../utils/actionName';
 })
 export class NavigationComponent implements OnInit {
     
-    private isAuthenticated : boolean;
-    private currentUser : string;
-    private isAdmin : boolean;
+    public isAuthenticated : boolean;
+    public currentUser : string;
+    public isAdmin : boolean;
 
     constructor(
-        private authManager : AuthManager,
-        private commonService : CommonService
+        public authManager : AuthManager,
+        public commonService : CommonService
     ){
         this.isAuthenticated = this.authManager.isAuthenticated();
         this.currentUser = '';

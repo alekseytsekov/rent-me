@@ -35,25 +35,25 @@ class ImageDto {
 })
 export class PropertyFrom implements OnInit{
 
-    private hasError : boolean;
-    private errorMessage : string;
+    public hasError : boolean;
+    public errorMessage : string;
 
-    private chosenRooms;
-    private roomTypes;
-    private propertyTypes ;//: PropertyType[]
-    private images;
+    public chosenRooms;
+    public roomTypes;
+    public propertyTypes ;//: PropertyType[]
+    public images;
 
-    private maxImages : number;
-    private imageMap : Map<string, ImageDto>;
+    public maxImages : number;
+    public imageMap : Map<string, ImageDto>;
     //private selectRoom : string;
     
 
     constructor(
-        private router : Router, 
-        private authManager : AuthManager, 
-        private propertyDto : PropertyDto,
-        private propertyService : PropertyService,
-        private commonService : CommonService
+        public router : Router, 
+        public authManager : AuthManager, 
+        public propertyDto : PropertyDto,
+        public propertyService : PropertyService,
+        public commonService : CommonService
     ){
 
         this.hasError = false;

@@ -31,14 +31,14 @@ import { UserDto } from './../../../models/auth/userDto.model';
 })
 export class RegisterForm implements OnInit{
     
-    private hasError : boolean;
-    private errorMessage : string;
+    public hasError : boolean;
+    public errorMessage : string;
 
-    constructor(private router : Router, 
-                private user: UserDto, 
-                private authService : AuthService,
-                private authManager : AuthManager,
-                private commonService : CommonService
+    constructor(public router : Router, 
+        public user: UserDto, 
+        public authService : AuthService,
+        public authManager : AuthManager,
+        public commonService : CommonService
             ){
         this.hasError = false;
         this.errorMessage = '';

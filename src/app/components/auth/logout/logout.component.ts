@@ -15,9 +15,9 @@ import action from './../../../utils/actionName';
 })
 export class LogoutComponent implements OnInit {
     constructor(
-        private authManager : AuthManager,
-        private authService : AuthService,
-        private router : Router
+        public authManager : AuthManager,
+        public authService : AuthService,
+        public router : Router
     ) {
             this.onLogout = this.onLogout.bind(this);
     }

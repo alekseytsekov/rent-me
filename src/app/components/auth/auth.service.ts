@@ -13,7 +13,7 @@ const logoutUrl = `/user/${config.appKey}/_logout`;
 
 @Injectable()
 export class AuthService{
-    constructor (private requestor : RequesterService){
+    constructor (public requestor : RequesterService){
 
     }
 

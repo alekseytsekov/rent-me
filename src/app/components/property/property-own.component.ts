@@ -24,12 +24,12 @@ import { Image } from './../../models/common/image.model';
 })
 export class PropertyOwnComponent implements OnInit {
 
-    private properties;
+    public properties;
 
     constructor(
-        private propertyService : PropertyService,
-        private commonService : CommonService,
-        private router : Router
+        public propertyService : PropertyService,
+        public commonService : CommonService,
+        public router : Router
     ){
         this.properties = [];
 

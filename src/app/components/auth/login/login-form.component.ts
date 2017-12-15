@@ -26,14 +26,14 @@ import { UserDto } from './../../../models/auth/userDto.model';
 })
 export class LoginFormComponent implements OnInit {
 
-    private hasError : boolean;
-    private errorMessage : string;
+    public hasError : boolean;
+    public errorMessage : string;
 
     constructor(
-        private router : Router, 
-        private user: UserDto, 
-        private authService : AuthService,
-        private authManager : AuthManager
+        public router : Router, 
+        public user: UserDto, 
+        public authService : AuthService,
+        public authManager : AuthManager
     ){
         this.hasError = false;
         this.errorMessage = '';

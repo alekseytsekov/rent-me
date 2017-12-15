@@ -18,8 +18,8 @@ const updatePropertyUrl = addPropertyUrl;
 @Injectable()
 export class PropertyService{
     constructor(
-        private requestService : RequesterService,
-        private authManager : AuthManager
+        public requestService : RequesterService,
+        public authManager : AuthManager
     ){
 
     }

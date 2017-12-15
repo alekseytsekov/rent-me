@@ -10,11 +10,11 @@ import actions from './../../utils/actionName';
 })
 export class InfoMessageComponent implements OnInit {
     
-    private isSuccess : boolean;
-    private isInfo : boolean;
-    private isError : boolean;
+    public isSuccess : boolean;
+    public isInfo : boolean;
+    public isError : boolean;
 
-    private message : string;
+    public message : string;
 
     constructor(){
         this.isSuccess = false;

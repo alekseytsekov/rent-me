@@ -17,8 +17,8 @@ const addUserIdUrl = `/appdata/${config.appKey}/allUsers`;
 @Injectable()
 export class CommonService {
     constructor(
-        private requestService : RequesterService,
-        private authManager : AuthManager
+        public requestService : RequesterService,
+        public authManager : AuthManager
     ) {
 
     }

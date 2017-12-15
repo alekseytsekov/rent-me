@@ -28,16 +28,16 @@ import { Comment } from './../../models/common/comment.model';
 })
 export class PropertyDetailComponent implements OnInit {
     
-    private propertyId : string;
-    private property : PropertyDto;
-    private likesDislikes : Map<string,boolean>;
+    public propertyId : string;
+    public property : PropertyDto;
+    public likesDislikes : Map<string,boolean>;
 
     constructor(
-        private propertyService : PropertyService,
-        private route : ActivatedRoute,
-        private router : Router,
-        private commonService : CommonService,
-        private authManager : AuthManager
+        public propertyService : PropertyService,
+        public route : ActivatedRoute,
+        public router : Router,
+        public commonService : CommonService,
+        public authManager : AuthManager
         //private property : PropertyDto
     ) {
         this.propertyId = '';

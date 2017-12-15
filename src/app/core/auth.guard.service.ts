@@ -14,9 +14,9 @@ import { CommonService } from './common.service';
 @Injectable()
 export class AuthGuard implements CanActivate, CanLoad {
   constructor(
-    private authManager : AuthManager,
-    private router : Router,
-    private commonService : CommonService
+    public authManager : AuthManager,
+    public router : Router,
+    public commonService : CommonService
   ) { }
   
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {

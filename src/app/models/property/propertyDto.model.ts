@@ -34,6 +34,7 @@ export class PropertyDto{
     public detailsLink : string;
     public isRentedOut : boolean;
     public phone : string;
+    public images : string[];
 
     constructor(){
         this.id  = '',
@@ -61,6 +62,7 @@ export class PropertyDto{
         this.address = '',
         this.detailsLink = '',
         this.isRentedOut = false,
-        this.phone = ''
+        this.phone = '',
+        this.images=[]
     }
 }

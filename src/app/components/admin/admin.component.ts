@@ -21,12 +21,12 @@ import { User } from './../../models/auth/user.model';
 })
 export class AdminComponent implements OnInit {
 
-    private users : {}[]
+    public users : {}[]
 
     constructor(
-        private commonService : CommonService,
-        private authManager : AuthManager,
-        private router : Router
+        public commonService : CommonService,
+        public authManager : AuthManager,
+        public router : Router
     ){
         this.users = [];
         this.getUserIdsCallback = this.getUserIdsCallback.bind(this);

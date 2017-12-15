@@ -15,7 +15,7 @@ const logoutUrl = config.baseUrl + `/user/${appKey}/_logout`
 
 @Injectable()
 export class RequesterService {
-    constructor(private http : HttpClient, private authManager : AuthManager){
+    constructor(public http : HttpClient, public authManager : AuthManager){
 
     }
 
