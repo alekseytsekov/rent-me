@@ -3,10 +3,19 @@
     top: 0;
     left: 0;
     z-index: 9999;
-    width: 105%;
+    width: 102%;
     text-align: center;
 }
 
 .info-message span {
     width: 100%;
+}
+
+.info-error span {
+    color: white;
+    background-color: red;
+}
+
+.info-error {
+   font-size: 2rem;
 }

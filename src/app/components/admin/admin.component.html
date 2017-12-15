@@ -1,0 +1,52 @@
+<div class="container-fluid">
+  <div class="row">
+    <h2>admin menu</h2>
+  </div>
+  <div class="row user-wrapper">
+    <div *ngFor="let user of users" class="col-sm-4">
+
+        <div class="user">
+                <div class="row form-group">
+                        <label class="col-sm-4">
+                          Email
+                        </label>
+                        <span class="col-xs-8">{{user.username}}</span>
+                      </div>
+                
+                      <div class="row form-group">
+                        <label class="col-sm-4">
+                          Full Name
+                        </label>
+                        <span class="col-xs-8">{{user.firstName}} {{user.lastName}}</span>
+                      </div>
+                
+                      <!-- <div class="row form-group">
+                        <label class="col-sm-4">
+                          Can comment
+                        </label>
+                        <div class="col-xs-4">{{user.canComment}}</div>
+                        <div *ngIf="user?.canComment" class="col-xs-4 offset-1"><button (click)="setCommentStatus(false)" class="btn btn-sm btn-danger">Turn Off</button></div>
+                        <div *ngIf="!user?.canComment" class="col-xs-4 offset-1"><button (click)="setCommentStatus(true)" class="btn btn-sm btn-success">Turn On</button></div>
+                      </div> -->
+                
+                      <!-- <div class="row form-group">
+                        <label class="col-sm-4">
+                          Is banned
+                        </label>
+                        <div *ngIf="user?.isBanned" class="col-xs-4 offset-1"><button (click)="setBannedStatus(false)" class="btn btn-sm btn-danger">Turn Off</button></div>
+                        <div *ngIf="!user?.isBanned" class="col-xs-4 offset-1"><button (click)="setBannedStatus(true)" class="btn btn-sm btn-success">Turn On</button></div>
+                      </div> -->
+                
+                      <div class="row form-group">
+                        <label class="col-sm-4">
+                          Is Moderator
+                        </label>
+                        <div *ngIf="user?.isAdmin" class="col-xs-4 offset-1"><button (click)="setAdminStatus(false, user._id)" class="btn btn-sm btn-danger">Turn Off</button></div>
+                        <div *ngIf="!user?.isAdmin" class="col-xs-4 offset-1"><button (click)="setAdminStatus(true, user._id)" class="btn btn-sm btn-success">Turn On</button></div>
+                      </div>
+        </div>
+      
+        <br>
+    </div>
+  </div>
+</div>

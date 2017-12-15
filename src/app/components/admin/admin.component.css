@@ -1,0 +1,18 @@
+
+label {
+    font-weight: bold;
+}
+
+.user-wrapper {
+    padding: 3rem;
+}
+
+.user {
+    padding: 2rem;;
+    border: 2px solid rgb(230,230,230);
+}
+
+.user:hover {
+    background-color: rgb(235,235,235);
+    border: 2px solid black;
+}

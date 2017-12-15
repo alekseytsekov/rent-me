@@ -9,12 +9,14 @@ import {
 } from '@angular/router';
 
 import { AuthManager } from './../utils/auth.manager';
+import { CommonService } from './common.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanLoad {
   constructor(
     private authManager : AuthManager,
-    private router : Router
+    private router : Router,
+    private commonService : CommonService
   ) { }
   
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
@@ -26,6 +28,7 @@ export class AuthGuard implements CanActivate, CanLoad {
   }
   
   checkLoggedIn(url : string) : boolean {
+
     if (this.authManager.isAuthenticated()) {
       return true;
     }

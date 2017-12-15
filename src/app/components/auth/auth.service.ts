@@ -9,7 +9,7 @@ import { User } from './../../models/auth/user.model';
 
 const registerUrl = `/user/${config.appKey}`;
 const loginUrl = `/user/${config.appKey}/login`;
-const logoutUrl = `/user/${config.appKey}/_logout`
+const logoutUrl = `/user/${config.appKey}/_logout`;
 
 @Injectable()
 export class AuthService{
@@ -18,8 +18,6 @@ export class AuthService{
     }
 
     register(user : User, callBack) {
-
-        //console.log(user);
 
         this.requestor.postReq(registerUrl, user, true)
             .subscribe(res => {
@@ -34,6 +32,7 @@ export class AuthService{
         this.requestor.postReq(loginUrl, loginUser, true)
             .subscribe(res => {
                 callBack(res);
+                //console.log(res);
             },
             err => {
                 callBack(null, err);

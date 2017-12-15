@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { CommonService } from './common.service';
 
+import { AdminComponent } from './../components/admin/admin.component';
+
 @NgModule({
     imports : [ 
         CommonModule,
@@ -10,7 +12,7 @@ import { CommonService } from './common.service';
      ],
     declarations : [
         //components
-        //CommonService
+        AdminComponent
     ],
     exports : [
         //CommonService

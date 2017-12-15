@@ -4,6 +4,7 @@
     <a *ngIf="isAuthenticated" routerLink="/property/own">My property ads</a>
     <a *ngIf="isAuthenticated" routerLink="/logout" class="pull-right col-sm-2 text-center">Log out</a>
     <span *ngIf="isAuthenticated" class="pull-right col-sm-2 text-center">Hello {{currentUser}}!</span>
+    <a *ngIf="isAdmin" routerLink="/admin" class="pull-right col-sm-2 text-center">Admin Menu</a>
     <a *ngIf="!isAuthenticated" routerLink="/register">Register</a>
     <a *ngIf="!isAuthenticated" routerLink="/login">Login</a>
 </nav>

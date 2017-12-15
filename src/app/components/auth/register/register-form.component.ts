@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 // services
 import { AuthService } from './../auth.service';
+import { CommonService } from './../../../core/common.service';
 
 // utils
 import { AuthManager } from './../../../utils/auth.manager';
@@ -24,7 +25,8 @@ import { UserDto } from './../../../models/auth/userDto.model';
     providers : [ 
         UserDto,
         AuthService,
-        AuthManager
+        AuthManager,
+        CommonService
      ]
 })
 export class RegisterForm implements OnInit{
@@ -35,12 +37,14 @@ export class RegisterForm implements OnInit{
     constructor(private router : Router, 
                 private user: UserDto, 
                 private authService : AuthService,
-                private authManager : AuthManager
+                private authManager : AuthManager,
+                private commonService : CommonService
             ){
         this.hasError = false;
         this.errorMessage = '';
 
         this.processRegisterResponse = this.processRegisterResponse.bind(this);
+        this.addUserId = this.addUserId.bind(this);
     }
 
     ngOnInit(): void {
@@ -119,6 +123,7 @@ export class RegisterForm implements OnInit{
 
         this.authManager.setAuth(res._kmd.authtoken, res._id, fullName, true, false);
 
+        this.addUserId(res);
         //this.router.navigate(['/login']);
         observer.executeFunc(action.changeNavState, this.authManager.isAuthenticated());
         this.router.navigate(['/']);
@@ -127,5 +132,10 @@ export class RegisterForm implements OnInit{
     hideError() : void{
         this.hasError = false;
         this.errorMessage = '';
+    }
+
+    addUserId(user) {
+
+        this.commonService.addUserId(user._id);
     }
 }

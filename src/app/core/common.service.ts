@@ -10,6 +10,7 @@ import config from './../config/config';
 const userUrl = `/user/${config.appKey}/`;
 const commentUrl = `/appdata/${config.appKey}/comments`;
 const imageUrl = `/appdata/${config.appKey}/images`;
+const addUserIdUrl = `/appdata/${config.appKey}/allUsers`;
 
 //const baseCollectionUrl = `/appdata/${config.appKey}`;
 
@@ -113,7 +114,6 @@ export class CommonService {
         } 
     }
 
-
     async getUserById(userId : string) {
         try {
             
@@ -122,13 +122,48 @@ export class CommonService {
             if(result['status'] && result['status'] === 401){
                 return [];
             }
-            //console.log(1);
-           //console.log(result);
+            
             return result;
         } catch (e) {
             console.log('greshka');
-            //console.log(e);
+            
             return [];
         } 
+    }
+
+    addUserId(userId) {
+        
+        let allUsers = {
+            userId : userId
+        };
+
+        //console.log('before send add userid');
+        this.requestService.postReq(addUserIdUrl, allUsers).subscribe(res => {
+           // console.log('res from add userid');
+            //console.log(res);
+        });
+    }
+
+    getUserIds(callback){
+        this.requestService.getReq(addUserIdUrl, true)
+            .subscribe(res => {
+                callback(res);
+            },
+            err => {
+                callback(null, err);
+            })
+    }
+
+    updateUser(user, callback){
+
+        let url = userUrl + user['_id'];
+
+        this.requestService.put(url , user)
+        .subscribe(res => {
+            callback(res);
+        },
+        err => {
+            callback(null, err);
+        })
     }
 }

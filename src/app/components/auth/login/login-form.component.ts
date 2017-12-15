@@ -48,8 +48,7 @@ export class LoginFormComponent implements OnInit {
     }
 
     submit() : void {
-        //console.log(JSON.stringify(this.user));
-
+        
         let emailValid = validator.isEmailValid(this.user.email);
 
         if(!emailValid){
@@ -79,13 +78,9 @@ export class LoginFormComponent implements OnInit {
     processLogin(res, err){
         if(err){
             console.log(err);
-            //this.router.navigate([`/error?msg=${err}`]);
             observer.executeFunc(action.SHOW_ERROR, 'Email or password is incorrect!');
-
             return;
         }
-
-        //console.log(res);
 
         let fullName = res.firstName + ' ' + res.lastName;
         
