@@ -115,9 +115,9 @@ export class PropertyDetailComponent implements OnInit {
     async getPropertyCallBack(property, err) {
 
         if(err){
-            //this.router.navigate(['/error?message=badrequest']);
-            observer.executeFunc(actions.SHOW_ERROR, "Error! Something happened!");
-            console.error(err);
+            this.router.navigate(['/property/own']);
+            //observer.executeFunc(actions.SHOW_ERROR, "Error! Something happened!");
+            //console.error(err);
             return;
         }
 
