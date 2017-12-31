@@ -32,7 +32,7 @@
                 </div>
         
                 <br>
-                <div class="row">
+                <div *ngIf="isAuth" class="row">
                     <button (click)="goToDetails(prop.detailsLink)" class="btn btn-info col-sm-2">Details</button>
                 </div>
             </div>

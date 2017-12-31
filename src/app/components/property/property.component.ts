@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { PropertyService } from './property.service';
 import { CommonService } from './../../core/common.service';
 
+import { AuthManager } from './../../utils/auth.manager';
 import { PropertyType } from './../../models/property/property-type.model';
 import { Room } from './../../models/property/room.model';
 import { PropertyDto } from './../../models/property/propertyDto.model';
@@ -27,16 +28,21 @@ import { Image } from './../../models/common/image.model';
 export class PropertyComponent implements OnInit{
     
     public properties : PropertyDto[];
+    private isAuth : boolean;
     
     constructor(
         public propertyService : PropertyService,
         public commonService : CommonService,
-        public router : Router
+        public router : Router,
+        public AuthManager : AuthManager
     ){
         this.properties = [];
+        this.isAuth = false;
     }
 
     ngOnInit(){
+        //console.log('here')
+        this.isAuth = this.AuthManager.isAuthenticated();
         this.getProperties();
     }
 
@@ -62,7 +68,6 @@ export class PropertyComponent implements OnInit{
         let tempUserArr = [];
         userMap.forEach((value: any, key: string) => {
             
-
             if(key === undefined || key === null || key === 'undefined' || key.length < 1 || key === ''){
                 return;
             }
@@ -119,6 +124,9 @@ export class PropertyComponent implements OnInit{
         const imageMap = new Map();
         
         this.properties = await this.propertyService.getAllProperties() as PropertyDto[];
+
+        //console.log('here!!')
+        //console.log(this.properties);
 
         this.properties = this.properties.filter(x => !x.isRentedOut);
         

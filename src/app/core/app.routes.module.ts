@@ -17,7 +17,8 @@ import { PropertyDetailComponent } from './../components/property/property-detai
 import { AdminComponent } from './../components/admin/admin.component';
 
 const routes : Routes = [
-    { path : '', canActivate: [ AuthGuard ], component : PropertyComponent, pathMatch : 'full' },
+    { path : '', component : PropertyComponent, pathMatch : 'full' },
+    { path : 'home', component : PropertyComponent},
     { path : 'login', component : LoginFormComponent },
     { path : 'register', component : RegisterForm },
     { path : 'admin', canActivate: [ AuthGuard ], component : AdminComponent },
@@ -49,5 +50,5 @@ const routes : Routes = [
     ]
 })
 export class AppRoutesModule{
-
+    
 }

@@ -24,6 +24,9 @@ export class RequesterService {
         const fullUrl = config.baseUrl + url;
         const headers = this.createAuthHeaders('Basic', useUserCredentials);
 
+        //console.log(fullUrl);
+        //console.log(headers);
+
         return this.http.get(fullUrl, { headers });
     }
 
@@ -62,13 +65,27 @@ export class RequesterService {
                     'Authorization': `Kinvey ${userAuth.token}`,
                     'Content-Type': 'application/json'
                   })
+            } else { // new 
+                return new HttpHeaders({
+                    'Authorization': `Basic ${btoa(`${config.anonymousUsername}:${config.anonymousPassword}`)}`,
+                    'Content-Type': 'application/json'
+                  });
             }
 
-          return new HttpHeaders({
-            'Authorization': `Basic ${btoa(`${appKey}:${appSecret}`)}`,
-            'Content-Type': 'application/json'
-          })
+        //   return new HttpHeaders({
+        //     'Authorization': `Basic ${btoa(`${appKey}:${appSecret}`)}`,
+        //     'Content-Type': 'application/json'
+        //   });
+
         } else {
+
+            // new
+            if(!useUserCredentials){
+                return new HttpHeaders({
+                    'Authorization': `Basic ${btoa(`${config.anonymousUsername}:${config.anonymousPassword}`)}`,
+                    'Content-Type': 'application/json'
+                  });
+            }
 
             const token = this.authManager.getAuth().token;
 

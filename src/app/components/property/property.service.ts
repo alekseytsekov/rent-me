@@ -27,9 +27,13 @@ export class PropertyService{
     async getPropertyTypes ()  { // : PropertyType[]
         
         try{
-            let res = await this.requestService.getReq(propertyTypeUrl, true)
+
+            let isAuth = this.authManager.isAuthenticated();
+
+            let res = await this.requestService.getReq(propertyTypeUrl, isAuth)
             .toPromise();
 
+            //console.log('res');
             //console.log(res);
             if(res['status'] && res['status'] === 401){
                 return [];
@@ -37,7 +41,7 @@ export class PropertyService{
 
             return res;
         } catch(e) {
-            console.log(e);
+            //console.log(e);
             return [];
         }
     }
@@ -45,7 +49,10 @@ export class PropertyService{
     async getRoomTypes()  { // : PropertyType[]
         
         try{
-            let res = await this.requestService.getReq(roomTypeUrl, true)
+
+            let isAuth = this.authManager.isAuthenticated();
+
+            let res = await this.requestService.getReq(roomTypeUrl, isAuth)
             .toPromise();
 
             //console.log(res);
@@ -55,7 +62,7 @@ export class PropertyService{
 
             return res;
         } catch(e) {
-            console.log(e);
+            //console.log(e);
             return [];
         }
     }
@@ -79,19 +86,20 @@ export class PropertyService{
     async getAllProperties(){
         try {
 
-            let result = await this.requestService.getReq(propertiesUrl, true).toPromise();
+            let isAuth = this.authManager.isAuthenticated();
+            
+            let result = await this.requestService.getReq(propertiesUrl, isAuth).toPromise();
 
             if(result['status'] && result['status'] === 401){
                 return [];
             }
-            //console.log(1);
-           // console.log(result);
+            
             return result;
 
         } catch(e) {
-            console.log(e);
+            //console.log(e);
             return [];
-        }
+        } 
     }
 
     getPropertyById(propertyId, callback){

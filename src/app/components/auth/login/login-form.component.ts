@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from './../auth.service';
 
 // utils
+import config from './../../../config/config';
 import validator from './../../../utils/validator';
 import observer from './../../../utils/observer';
 import action from './../../../utils/actionName';
@@ -57,6 +58,11 @@ export class LoginFormComponent implements OnInit {
             return;
         }
 
+        if(this.user.email.trim() === config.anonymousUsername){
+            this.hasError = true;
+            this.errorMessage = 'Email is already used!';
+            return;
+        } 
 
         let arePasswordValid = validator.isPasswordValid(this.user.password, 3);
         if(!arePasswordValid){
@@ -77,7 +83,9 @@ export class LoginFormComponent implements OnInit {
 
     processLogin(res, err){
         if(err){
+            console.log('-------------------------This is error handler log message! Everything is under control! ----------------');
             console.log(err);
+            console.log('-------------------------END error handler log message! Everything is under control! ----------------')
             observer.executeFunc(action.SHOW_ERROR, 'Email or password is incorrect!');
             return;
         }
