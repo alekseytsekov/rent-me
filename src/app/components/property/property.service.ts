@@ -89,15 +89,17 @@ export class PropertyService{
             let isAuth = this.authManager.isAuthenticated();
             
             let result = await this.requestService.getReq(propertiesUrl, isAuth).toPromise();
-
+            
+            //console.log(result);
             if(result['status'] && result['status'] === 401){
+                
                 return [];
             }
             
             return result;
 
         } catch(e) {
-            //console.log(e);
+            console.log(e);
             return [];
         } 
     }

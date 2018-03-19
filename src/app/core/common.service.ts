@@ -125,7 +125,8 @@ export class CommonService {
             
             return result;
         } catch (e) {
-            console.log('greshka');
+            console.log('----------greshka-------------');
+            console.log(e);
             
             return [];
         } 

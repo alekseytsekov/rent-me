@@ -128,10 +128,11 @@ export class PropertyComponent implements OnInit{
         //console.log('here!!')
         //console.log(this.properties);
 
-        this.properties = this.properties.filter(x => !x.isRentedOut);
+        //this.properties = this.properties.filter(x => !x.isRentedOut);
         
         this.properties.forEach(x => {
 
+            
             x.detailsLink = '/property/' + x._id;
 
             x.rooms = [];
@@ -188,9 +189,6 @@ export class PropertyComponent implements OnInit{
 
         this.getAndSetUsersToMap(userMap);
 
-        // this.properties.forEach(x => {
-        //     x.
-        // })
     }
 
     goToDetails(link){

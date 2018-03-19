@@ -10,6 +10,8 @@ label {
 .ad-short {
     padding: 2rem;;
     border: 2px solid rgb(230,230,230);
+    height: 40rem;
+    max-height: 40rem;
 }
 
 .ad-short:hover {
